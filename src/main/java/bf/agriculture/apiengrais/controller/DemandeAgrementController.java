@@ -39,9 +39,8 @@ public class DemandeAgrementController {
     @Autowired
     private DemandeAgrementService demandeAgrementService;
 
-    
     /**
-     * 
+     *
      * @param demandeAgrement
      * @return demandeAgrements ajouter
      */
@@ -49,51 +48,47 @@ public class DemandeAgrementController {
     public DemandeAgrement save(@RequestBody DemandeAgrement demandeAgrement) {
         return demandeAgrementService.save(demandeAgrement);
     }
-    
-    
+
     /**
-     * 
+     *
      * @return liste des demandeAgrement
      */
     @GetMapping
-    public List<DemandeAgrement> findAll(){
+    public List<DemandeAgrement> findAll() {
         return demandeAgrementService.findAll();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return demandeAgrement par id
      */
     @GetMapping("/{id}")
-    public DemandeAgrement findById(@PathVariable Long id){
+    public DemandeAgrement findById(@PathVariable Long id) {
         return demandeAgrementService.findById(id);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param demandeAgrement
-     * @return Mise a jours des elements de la table region
+     * @return Mise a jours une demandeagrement
      */
     @PutMapping
     public DemandeAgrement update(@RequestBody DemandeAgrement demandeAgrement) {
         return demandeAgrementService.save(demandeAgrement);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @param updates
-     * @return actite modifier
+     * @return modifier le numero rccm
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateLibelleDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
-        String newActiviteDemandeAgrement = updates.get("activite");
-        Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateActiviteDemandeAgrement(id, newActiviteDemandeAgrement);
-        
+    public ResponseEntity<Map<String, String>> updateNumRccmDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        String newNumRccmDemandeAgrement = updates.get("numRccm");
+        Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateNumRccmDemandeAgrement(id, newNumRccmDemandeAgrement);
+
         if (updatedDemandeAgrement.isPresent()) {
             Map<String, String> response = new HashMap<>();
             response.put("message", "DemandeAgrement updated successfully");
@@ -102,10 +97,49 @@ public class DemandeAgrementController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-    
+
     /**
-     * 
+     *
+     * @param id
+     * @param updates
+     * @return modifier le numIFU
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateNumIfuDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        String newNumIfuDemandeAgrement = updates.get("numIfu");
+        Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateNumIfuDemandeAgrement(id, newNumIfuDemandeAgrement);
+
+        if (updatedDemandeAgrement.isPresent()) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "DemandeAgrement updated successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     *
+     * @param id
+     * @param updates
+     * @return modifier activite
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updatActiviteDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        String newActiviteDemandeAgrement = updates.get("activite");
+        Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateActiviteDemandeAgrement(id, newActiviteDemandeAgrement);
+
+        if (updatedDemandeAgrement.isPresent()) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "DemandeAgrement updated successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     *
      * @param id
      * @return demandeAgrement supprimer avec message de confirmation
      */
@@ -114,13 +148,12 @@ public class DemandeAgrementController {
         demandeAgrementService.deleteDemandeAgrementById(id);
         return ResponseEntity.noContent().build();
     }
-    
-/*
+
+    /*
     //Supression simple avec appel de fonction depuis le region service
     @DeleteMapping("/{id}")
     public void deleteDemandeAgrement(@PathVariable Long id) {
         demandeAgrementService.deleteDemandeAgrementById(id);
     }
-*/
-
+     */
 }

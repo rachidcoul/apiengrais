@@ -29,10 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/province")
-
-/**
- * acceder aux donner de la table Province
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ProvinceController {
 
@@ -43,7 +39,7 @@ public class ProvinceController {
     /**
      * 
      * @param province
-     * @return provinces ajouter
+     * @return ajouter une province
      */
     @PostMapping
     public Province save(@RequestBody Province province) {
@@ -53,7 +49,7 @@ public class ProvinceController {
     
     /**
      * 
-     * @return liste des province
+     * @return liste des provinces
      */
     @GetMapping
     public List<Province> findAll(){
@@ -64,7 +60,7 @@ public class ProvinceController {
     /**
      * 
      * @param id
-     * @return province par id
+     * @return liste de provinces par id
      */
     @GetMapping("/{id}")
     public Province findById(@PathVariable Long id){
@@ -75,7 +71,7 @@ public class ProvinceController {
     /**
      * 
      * @param province
-     * @return Mise a jours des elements de la table region
+     * @return Mise a jours des elements de la table province
      */
     @PutMapping
     public Province update(@RequestBody Province province) {
@@ -87,7 +83,7 @@ public class ProvinceController {
      * 
      * @param id
      * @param updates
-     * @return chant libelle modifier
+     * @return modifier le  libelle de province
      */
     @PatchMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateLibelleProvince(@PathVariable Long id, @RequestBody Map<String, String> updates) {

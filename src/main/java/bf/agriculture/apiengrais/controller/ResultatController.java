@@ -29,85 +29,53 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/resultat")
-
-/**
- * acceder aux donner de la table Resultat
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ResultatController {
 
     @Autowired
     private ResultatService resultatService;
 
-    
     /**
-     * 
+     *
      * @param resultat
-     * @return resultats ajouter
+     * @return ajouter un resultat
      */
     @PostMapping
     public Resultat save(@RequestBody Resultat resultat) {
         return resultatService.save(resultat);
     }
-    
-    
+
     /**
-     * 
-     * @return liste des resultat
+     *
+     * @return liste des resultats
      */
     @GetMapping
-    public List<Resultat> findAll(){
+    public List<Resultat> findAll() {
         return resultatService.findAll();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
-     * @return resultat par id
+     * @return liste des resultat par id
      */
     @GetMapping("/{id}")
-    public Resultat findById(@PathVariable Long id){
+    public Resultat findById(@PathVariable Long id) {
         return resultatService.findById(id);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param resultat
-     * @return Mise a jours des elements de la table region
+     * @return modifier les resultats
      */
     @PutMapping
     public Resultat update(@RequestBody Resultat resultat) {
         return resultatService.save(resultat);
     }
-    
-    
+
     /**
-     * 
-     * @param id
-     * @param updates
-     * @return chant libelle modifier
-     */
-    /*
-    @PatchMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateLibelleResultat(@PathVariable Long id, @RequestBody Map<String, String> updates) {
-        String newLibelleResultat = updates.get("libelle");
-        Optional<Resultat> updatedResultat = resultatService.updateLibelleResultat(id, newLibelleResultat);
-        
-        if (updatedResultat.isPresent()) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Resultat updated successfully");
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    */
-    
-    
-    /**
-     * 
+     *
      * @param id
      * @return resultat supprimer avec message de confirmation
      */
@@ -116,13 +84,12 @@ public class ResultatController {
         resultatService.deleteResultatById(id);
         return ResponseEntity.noContent().build();
     }
-    
-/*
+
+    /*
     //Supression simple avec appel de fonction depuis le region service
     @DeleteMapping("/{id}")
     public void deleteResultat(@PathVariable Long id) {
         resultatService.deleteResultatById(id);
     }
-*/
-
+     */
 }

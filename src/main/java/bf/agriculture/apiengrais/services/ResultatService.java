@@ -18,36 +18,36 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ResultatService {
-    
+
     @Autowired
     ResultatRepository resultatRepository;
-    
-    // sauvegarder autorisation d'Importation
-    public Resultat save(Resultat resultat){
+
+    /**
+     *
+     * @param resultat
+     * @return ajouter un resultat
+     */
+    public Resultat save(Resultat resultat) {
         return resultatRepository.save(resultat);
     }
-    
-    //operation de recherche sur tous les elements de la region
+
+    /**
+     *
+     * @return lister des resultats
+     */
     public List<Resultat> findAll() {
         return resultatRepository.findAll();
     }
-    
-     // Rechercher par le ID
+
+    /**
+     *
+     * @param id
+     * @return liste de resultat apr id
+     */
     public Resultat findById(Long id) {
         return resultatRepository.findById(id).orElse(null);
     }
-    
-    //pour faire la mise a jours d'un seul element: le libelle de la Resultat
-//    public Optional<Resultat> updateLibelleResultat(Long id, String newLibelleResultat) {
-//        Optional<Resultat> resultatOptional = resultatRepository.findById(id);
-//        if (resultatOptional.isPresent()) {
-//            Resultat resultat = resultatOptional.get();
-//            resultat.setLibelle(newLibelleResultat);
-//            resultatRepository.save(resultat);
-//        }
-//        return resultatOptional;
-//    }
-    
+
     public void deleteResultatById(Long id) {
         Optional<Resultat> resultat = resultatRepository.findById(id);
         if (resultat.isPresent()) {

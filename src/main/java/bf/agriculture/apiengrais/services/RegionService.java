@@ -22,22 +22,39 @@ public class RegionService {
     @Autowired
     RegionRepository regionRepository;
     
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param region
+     * @return region Sauvegarder
+     */
     public Region save(Region region){
         return regionRepository.save(region);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return la liste des regions
+     */
     public List<Region> findAll() {
         return regionRepository.findAll();
     }
     
-     // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return la liste regions en fonction du id
+     */
+    
     public Region findById(Long id) {
         return regionRepository.findById(id).orElse(null);
     }
     
-    //pour faire la mise a jours d'un seul element: le libelle de la Region
+    /**
+     * 
+     * @param id
+     * @param newLibelleRegion
+     * @return le champs libelle region est modifier
+     */
     public Optional<Region> updateLibelleRegion(Long id, String newLibelleRegion) {
         Optional<Region> regionOptional = regionRepository.findById(id);
         if (regionOptional.isPresent()) {
@@ -48,6 +65,10 @@ public class RegionService {
         return regionOptional;
     }
     
+    /**
+     * @param id 
+     * la supression de la region a travers le id
+     */
     public void deleteRegionById(Long id) {
         Optional<Region> region = regionRepository.findById(id);
         if (region.isPresent()) {

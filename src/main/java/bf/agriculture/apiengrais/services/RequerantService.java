@@ -22,12 +22,19 @@ public class RequerantService {
     @Autowired
     RequerantRepository requerantRepository;
     
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param requerant
+     * @return ajouter un requerant
+     */
     public Requerant save(Requerant requerant){
         return requerantRepository.save(requerant);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return liste des requerants
+     */
     public List<Requerant> findAll() {
         return requerantRepository.findAll();
     }
@@ -37,7 +44,12 @@ public class RequerantService {
         return requerantRepository.findById(id).orElse(null);
     }
     
-    //pour faire la mise a jours d'un seul element: le libelle de la Requerant
+    /**
+     * 
+     * @param id
+     * @param newNomPrenomRequerant
+     * @return modification du Nom Prenom de requetant
+     */
     public Optional<Requerant> updateNomPrenomRequerant(Long id, String newNomPrenomRequerant) {
         Optional<Requerant> requerantOptional = requerantRepository.findById(id);
         if (requerantOptional.isPresent()) {
@@ -48,6 +60,43 @@ public class RequerantService {
         return requerantOptional;
     }
     
+    /**
+     * 
+     * @param id
+     * @param newContactRequerant
+     * @return modification du contacte de requerant
+     */
+    public Optional<Requerant> updateContactRequerant(Long id, String newContactRequerant) {
+        Optional<Requerant> requerantOptional = requerantRepository.findById(id);
+        if (requerantOptional.isPresent()) {
+            Requerant requerant = requerantOptional.get();
+            requerant.setContact(newContactRequerant);
+            requerantRepository.save(requerant);
+        }
+        return requerantOptional;
+    }
+    
+    /**
+     * 
+     * @param id
+     * @param newEmailRequerant
+     * @return modification du email
+     */
+    public Optional<Requerant> updateEmailRequerant(Long id, String newEmailRequerant) {
+        Optional<Requerant> requerantOptional = requerantRepository.findById(id);
+        if (requerantOptional.isPresent()) {
+            Requerant requerant = requerantOptional.get();
+            requerant.setEmail(newEmailRequerant);
+            requerantRepository.save(requerant);
+        }
+        return requerantOptional;
+    }
+    
+    /**
+     * 
+     * @param id 
+     * suppression du requerant par id
+     */
     public void deleteRequerantById(Long id) {
         Optional<Requerant> requerant = requerantRepository.findById(id);
         if (requerant.isPresent()) {

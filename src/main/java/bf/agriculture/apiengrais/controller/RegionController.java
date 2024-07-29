@@ -29,10 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/region")
-
-/**
- * acceder aux donner de la table Region
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class RegionController {
 
@@ -43,7 +39,7 @@ public class RegionController {
     /**
      * 
      * @param region
-     * @return regions ajouter
+     * @return ajouter une region
      */
     @PostMapping
     public Region save(@RequestBody Region region) {
@@ -64,7 +60,7 @@ public class RegionController {
     /**
      * 
      * @param id
-     * @return region par id
+     * @return liste de region par id
      */
     @GetMapping("/{id}")
     public Region findById(@PathVariable Long id){
@@ -87,7 +83,7 @@ public class RegionController {
      * 
      * @param id
      * @param updates
-     * @return chant libelle modifier
+     * @return modifier le  libelle region
      */
     @PatchMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateLibelleRegion(@PathVariable Long id, @RequestBody Map<String, String> updates) {

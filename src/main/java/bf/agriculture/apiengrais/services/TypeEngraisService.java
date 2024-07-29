@@ -22,22 +22,39 @@ public class TypeEngraisService {
     @Autowired
     TypeEngraisRepository typeEngraisRepository;
     
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param typeEngrais
+     * @return ajouter un typeEngrais
+     */
     public TypeEngrais save(TypeEngrais typeEngrais){
         return typeEngraisRepository.save(typeEngrais);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return 
+     * lister les typeEngrais
+     */
     public List<TypeEngrais> findAll() {
         return typeEngraisRepository.findAll();
     }
     
-     // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return lister le typeEngrais par id
+     */
     public TypeEngrais findById(Long id) {
         return typeEngraisRepository.findById(id).orElse(null);
     }
     
-    //pour faire la mise a jours d'un seul element: le libelle de la TypeEngrais
+    /**
+     * 
+     * @param id
+     * @param newLibelleTypeEngrais
+     * @return modifier le libelle de typeEngrais
+     */
     public Optional<TypeEngrais> updateLibelleTypeEngrais(Long id, String newLibelleTypeEngrais) {
         Optional<TypeEngrais> typeEngraisOptional = typeEngraisRepository.findById(id);
         if (typeEngraisOptional.isPresent()) {
@@ -48,6 +65,11 @@ public class TypeEngraisService {
         return typeEngraisOptional;
     }
     
+    /**
+     * 
+     * @param id 
+     * supprimer un typeEngrais
+     */
     public void deleteTypeEngraisById(Long id) {
         Optional<TypeEngrais> typeEngrais = typeEngraisRepository.findById(id);
         if (typeEngrais.isPresent()) {

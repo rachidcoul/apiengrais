@@ -39,9 +39,8 @@ public class ControleInterneController {
     @Autowired
     private ControleInterneService controleInterneService;
 
-    
     /**
-     * 
+     *
      * @param controleInterne
      * @return controleInternes ajouter
      */
@@ -49,80 +48,52 @@ public class ControleInterneController {
     public ControleInterne save(@RequestBody ControleInterne controleInterne) {
         return controleInterneService.save(controleInterne);
     }
-    
-    
+
     /**
-     * 
+     *
      * @return liste des controleInterne
      */
     @GetMapping
-    public List<ControleInterne> findAll(){
+    public List<ControleInterne> findAll() {
         return controleInterneService.findAll();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return controleInterne par id
      */
     @GetMapping("/{id}")
-    public ControleInterne findById(@PathVariable Long id){
+    public ControleInterne findById(@PathVariable Long id) {
         return controleInterneService.findById(id);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param controleInterne
-     * @return Mise a jours des elements de la table region
+     * @return Mise a jours des elements d'un controleInterne
      */
     @PutMapping
     public ControleInterne update(@RequestBody ControleInterne controleInterne) {
         return controleInterneService.save(controleInterne);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
-     * @param updates
-     * @return chant libelle
-     */
-    @PatchMapping("/{id}")
-    /*
-    public ResponseEntity<Map<String, String>> updateLibelleControleInterne(@PathVariable Long id, @RequestBody Map<String, String> updates) {
-        String newLibelleControleInterne = updates.get("libelle");
-        Optional<ControleInterne> updatedControleInterne = controleInterneService.updateLibelleControleInterne(id, newLibelleControleInterne);
-        
-        if (updatedControleInterne.isPresent()) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "ControleInterne updated successfully");
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    */
-    
-    
-    /**
-     * 
-     * @param id
-     * @return controleInterne supprimer avec message de confirmation
+     * @return  supprimer un controleInterne avec message de confirmation
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteControleInterne(@PathVariable Long id) {
         controleInterneService.deleteControleInterneById(id);
         return ResponseEntity.noContent().build();
     }
-    
-/*
+
+    /*
     //Supression simple avec appel de fonction depuis le region service
     @DeleteMapping("/{id}")
     public void deleteControleInterne(@PathVariable Long id) {
         controleInterneService.deleteControleInterneById(id);
     }
-*/
-
+     */
 }

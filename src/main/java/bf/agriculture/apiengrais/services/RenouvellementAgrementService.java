@@ -18,36 +18,40 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RenouvellementAgrementService {
-    
+
     @Autowired
     RenouvellementAgrementRepository renouvellementAgrementRepository;
-    
-    // sauvegarder autorisation d'Importation
-    public RenouvellementAgrement save(RenouvellementAgrement renouvellementAgrement){
+
+    /**
+     *
+     * @param renouvellementAgrement
+     * @return ajouter un renouvellementagrement
+     */
+    public RenouvellementAgrement save(RenouvellementAgrement renouvellementAgrement) {
         return renouvellementAgrementRepository.save(renouvellementAgrement);
     }
-    
-    //operation de recherche sur tous les elements de la region
+
+    /**
+     *
+     * @return liste des renouvellements
+     */
     public List<RenouvellementAgrement> findAll() {
         return renouvellementAgrementRepository.findAll();
     }
-    
-     // Rechercher par le ID
+
+    /**
+     *
+     * @param id
+     * @return liste des renouvellement par id
+     */
     public RenouvellementAgrement findById(Long id) {
         return renouvellementAgrementRepository.findById(id).orElse(null);
     }
-    
-    //pour faire la mise a jours d'un seul element: le libelle de la RenouvellementAgrement
-//    public Optional<RenouvellementAgrement> updateLibelleRenouvellementAgrement(Long id, String newLibelleRenouvellementAgrement) {
-//        Optional<RenouvellementAgrement> renouvellementAgrementOptional = renouvellementAgrementRepository.findById(id);
-//        if (renouvellementAgrementOptional.isPresent()) {
-//            RenouvellementAgrement renouvellementAgrement = renouvellementAgrementOptional.get();
-//            renouvellementAgrement.setLibelle(newLibelleRenouvellementAgrement);
-//            renouvellementAgrementRepository.save(renouvellementAgrement);
-//        }
-//        return renouvellementAgrementOptional;
-//    }
-    
+
+    /**
+     *
+     * @param id suppression d'un renouvellement
+     */
     public void deleteRenouvellementAgrementById(Long id) {
         Optional<RenouvellementAgrement> renouvellementAgrement = renouvellementAgrementRepository.findById(id);
         if (renouvellementAgrement.isPresent()) {

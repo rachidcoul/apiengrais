@@ -29,10 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/requerant")
-
-/**
- * acceder aux donner de la table Requerant
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class RequerantController {
 
@@ -43,7 +39,7 @@ public class RequerantController {
     /**
      * 
      * @param requerant
-     * @return requerants ajouter
+     * @return ajouter un requerant
      */
     @PostMapping
     public Requerant save(@RequestBody Requerant requerant) {
@@ -53,7 +49,7 @@ public class RequerantController {
     
     /**
      * 
-     * @return liste des requerant
+     * @return liste des requerants
      */
     @GetMapping
     public List<Requerant> findAll(){
@@ -64,7 +60,7 @@ public class RequerantController {
     /**
      * 
      * @param id
-     * @return requerant par id
+     * @return liste des requerants par id
      */
     @GetMapping("/{id}")
     public Requerant findById(@PathVariable Long id){
@@ -87,12 +83,52 @@ public class RequerantController {
      * 
      * @param id
      * @param updates
-     * @return chant libelle modifier
+     * @return chant NomPrenom modifier
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateLibelleRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
-        String newLibelleRequerant = updates.get("libelle");
-        Optional<Requerant> updatedRequerant = requerantService.updateNomPrenomRequerant(id, newLibelleRequerant);
+    public ResponseEntity<Map<String, String>> updateNomPrenonRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        String newNomPrenonRequerant = updates.get("nom_prenom");
+        Optional<Requerant> updatedRequerant = requerantService.updateNomPrenomRequerant(id, newNomPrenonRequerant);
+        
+        if (updatedRequerant.isPresent()) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Requerant updated successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    /**
+     * 
+     * @param id
+     * @param updates
+     * @return modifier le contact de libelle
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateContactRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        String newContactRequerant = updates.get("contact");
+        Optional<Requerant> updatedRequerant = requerantService.updateContactRequerant(id, newContactRequerant);
+        
+        if (updatedRequerant.isPresent()) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Requerant updated successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    /**
+     * 
+     * @param id
+     * @param updates
+     * @return modifier le email de requerant
+     */
+    @PatchMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateEmailRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        String newEmailRequerant = updates.get("email");
+        Optional<Requerant> updatedRequerant = requerantService.updateEmailRequerant(id, newEmailRequerant);
         
         if (updatedRequerant.isPresent()) {
             Map<String, String> response = new HashMap<>();
@@ -107,7 +143,7 @@ public class RequerantController {
     /**
      * 
      * @param id
-     * @return requerant supprimer avec message de confirmation
+     * @return requerant supprimer un requerant avec message de confirmation
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRequerant(@PathVariable Long id) {

@@ -22,22 +22,37 @@ public class ControleInterneService {
     @Autowired
     ControleInterneRepository controleInterneRepository;
     
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param controleInterne
+     * @return ajouter un controleInterne
+     */
     public ControleInterne save(ControleInterne controleInterne){
         return controleInterneRepository.save(controleInterne);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return lister les controleInternes
+     */
     public List<ControleInterne> findAll() {
         return controleInterneRepository.findAll();
     }
     
-     // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return lister un controleInterne par id
+     */
     public ControleInterne findById(Long id) {
         return controleInterneRepository.findById(id).orElse(null);
     }
     
-        
+    /**
+     * 
+     * @param id 
+     * supprimer un controleInterne
+     */   
     public void deleteControleInterneById(Long id) {
         Optional<ControleInterne> controleInterne = controleInterneRepository.findById(id);
         if (controleInterne.isPresent()) {

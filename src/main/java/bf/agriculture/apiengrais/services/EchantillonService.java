@@ -22,32 +22,37 @@ public class EchantillonService {
     @Autowired
     EchantillonRepository echantillonRepository;
     
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param echantillon
+     * @return ajouter un echantillon
+     */
     public Echantillon save(Echantillon echantillon){
         return echantillonRepository.save(echantillon);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return lister les echantillons
+     */
     public List<Echantillon> findAll() {
         return echantillonRepository.findAll();
     }
     
-     // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return liste d'un echantillon par id
+     */
     public Echantillon findById(Long id) {
         return echantillonRepository.findById(id).orElse(null);
     }
     
-    //pour faire la mise a jours d'un seul element: le libelle de la Echantillon
-//    public Optional<Echantillon> updateLibelleEchantillon(Long id, String newLibelleEchantillon) {
-//        Optional<Echantillon> echantillonOptional = echantillonRepository.findById(id);
-//        if (echantillonOptional.isPresent()) {
-//            Echantillon echantillon = echantillonOptional.get();
-//            echantillon.setLibelle(newLibelleEchantillon);
-//            echantillonRepository.save(echantillon);
-//        }
-//        return echantillonOptional;
-//    }
-    
+    /**
+     * 
+     * @param id 
+     * supprimer un echantillon par id
+     */
     public void deleteEchantillonById(Long id) {
         Optional<Echantillon> echantillon = echantillonRepository.findById(id);
         if (echantillon.isPresent()) {

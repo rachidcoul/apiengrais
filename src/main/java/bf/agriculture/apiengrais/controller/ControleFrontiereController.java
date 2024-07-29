@@ -30,25 +30,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/controleFrontiere")
 
-/**
- * acceder aux donner de la table ControleFrontiere
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ControleFrontiereController {
 
     @Autowired
     private ControleFrontiereService controleFrontiereService;
 
+    /**
+     * 
+     * @param controleFrontiere
+     * @return ajouter un controleFrontiere
+     */
     @PostMapping
     public ControleFrontiere save(@RequestBody ControleFrontiere controleFrontiere) {
         return controleFrontiereService.save(controleFrontiere);
     }
     
+    /**
+     * 
+     * @return liste des controleFrontieres
+     */
     @GetMapping
     public List<ControleFrontiere> findAll(){
         return controleFrontiereService.findAll();
     }
     
+    /**
+     * 
+     * @param id
+     * @return liste des controleFrontiere par id
+     */
     @GetMapping("/{id}")
     public ControleFrontiere findById(@PathVariable Long id){
         return controleFrontiereService.findById(id);

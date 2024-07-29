@@ -18,36 +18,41 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AutorisationImportationService {
-    
+
     @Autowired
     AutorisationImportationRepository autorisationImportationRepository;
-    
-    // sauvegarder autorisation d'Importation
-    public AutorisationImportation save(AutorisationImportation autorisationImportation){
+
+    /**
+     *
+     * @param autorisationImportation
+     * @return ajouter une autorisation d'importation
+     */
+    public AutorisationImportation save(AutorisationImportation autorisationImportation) {
         return autorisationImportationRepository.save(autorisationImportation);
     }
-    
-    //operation de recherche sur tous les elements de la region
+
+    /**
+     *
+     * @return liste des autorisations d'importation
+     */
     public List<AutorisationImportation> findAll() {
         return autorisationImportationRepository.findAll();
     }
-    
-     // Rechercher par le ID
+
     /**
-     * 
+     *
      * @param id
      * @return tous les autorisations d'importation par id
      */
     public AutorisationImportation findById(Long id) {
         return autorisationImportationRepository.findById(id).orElse(null);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @param newLibelleAutorisationImportation
-     * @return libelle
+     * @return modifier le libelle
      */
     public Optional<AutorisationImportation> updateLibelleAutorisationImportation(Long id, String newLibelleAutorisationImportation) {
         Optional<AutorisationImportation> autorisationImportationOptional = autorisationImportationRepository.findById(id);
@@ -58,7 +63,12 @@ public class AutorisationImportationService {
         }
         return autorisationImportationOptional;
     }
-    
+
+    /**
+     * 
+     * @param id 
+     * suppression d'une autorisations d'importation
+     */
     public void deleteAutorisationImportationById(Long id) {
         Optional<AutorisationImportation> autorisationImportation = autorisationImportationRepository.findById(id);
         if (autorisationImportation.isPresent()) {
@@ -68,5 +78,4 @@ public class AutorisationImportationService {
         }
     }
 
-    
 }

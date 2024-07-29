@@ -29,10 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/elementNutritif")
-
-/**
- * acceder aux donner de la table ElementNutritif
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ElementNutritifController {
 
@@ -43,7 +39,7 @@ public class ElementNutritifController {
     /**
      * 
      * @param elementNutritif
-     * @return elementNutritifs ajouter
+     * @return ajouter elementNutritifs 
      */
     @PostMapping
     public ElementNutritif save(@RequestBody ElementNutritif elementNutritif) {
@@ -64,7 +60,7 @@ public class ElementNutritifController {
     /**
      * 
      * @param id
-     * @return elementNutritif par id
+     * @return liste d'un elementNutritif par id
      */
     @GetMapping("/{id}")
     public ElementNutritif findById(@PathVariable Long id){

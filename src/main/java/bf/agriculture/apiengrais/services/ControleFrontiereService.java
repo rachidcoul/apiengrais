@@ -22,26 +22,42 @@ public class ControleFrontiereService {
     @Autowired
     ControleFrontiereRepository controleFrontiereRepository;
     
-    // sauvegarder autorisation d'Importation
-    public ControleFrontiere save(ControleFrontiere autorisationImportation){
-        return controleFrontiereRepository.save(autorisationImportation);
+    /**
+     * 
+     * @param controleFrontiere
+     * @return ajouter un controleFrontiere
+     */
+    public ControleFrontiere save(ControleFrontiere controleFrontiere){
+        return controleFrontiereRepository.save(controleFrontiere);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return 
+     * liste des controleFrontiere
+     */
     public List<ControleFrontiere> findAll() {
         return controleFrontiereRepository.findAll();
     }
     
-     // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return liste des controleFrontiere par id
+     */
     public ControleFrontiere findById(Long id) {
         return controleFrontiereRepository.findById(id).orElse(null);
     }
     
-        
+    /**
+     * 
+     * @param id 
+     * supprimer un controleFrontiere
+     */    
     public void deleteControleFrontiereById(Long id) {
-        Optional<ControleFrontiere> autorisationImportation = controleFrontiereRepository.findById(id);
-        if (autorisationImportation.isPresent()) {
-            controleFrontiereRepository.delete(autorisationImportation.get());
+        Optional<ControleFrontiere> controleFrontiere = controleFrontiereRepository.findById(id);
+        if (controleFrontiere.isPresent()) {
+            controleFrontiereRepository.delete(controleFrontiere.get());
         } else {
             throw new EntityNotFoundException("ControleFrontiere not found with id " + id);
         }

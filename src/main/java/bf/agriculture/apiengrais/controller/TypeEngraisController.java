@@ -29,10 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/typeEngrais")
-
-/**
- * acceder aux donner de la table TypeEngrais
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class TypeEngraisController {
 
@@ -43,7 +39,7 @@ public class TypeEngraisController {
     /**
      * 
      * @param typeEngrais
-     * @return typeEngraiss ajouter
+     * @return ajouter un typeEngraiss 
      */
     @PostMapping
     public TypeEngrais save(@RequestBody TypeEngrais typeEngrais) {
@@ -53,7 +49,7 @@ public class TypeEngraisController {
     
     /**
      * 
-     * @return liste des typeEngrais
+     * @return lister des typeEngrais
      */
     @GetMapping
     public List<TypeEngrais> findAll(){
@@ -64,7 +60,7 @@ public class TypeEngraisController {
     /**
      * 
      * @param id
-     * @return typeEngrais par id
+     * @return liste un typeEngrais par id
      */
     @GetMapping("/{id}")
     public TypeEngrais findById(@PathVariable Long id){

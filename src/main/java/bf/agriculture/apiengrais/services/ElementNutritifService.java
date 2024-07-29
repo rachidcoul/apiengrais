@@ -18,26 +18,42 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ElementNutritifService {
-    
+
     @Autowired
     ElementNutritifRepository elementNutritifRepository;
-    
-    // sauvegarder autorisation d'Importation
-    public ElementNutritif save(ElementNutritif elementNutritif){
+
+    /**
+     *
+     * @param elementNutritif
+     * @return ajouter un elementNutritif
+     */
+    public ElementNutritif save(ElementNutritif elementNutritif) {
         return elementNutritifRepository.save(elementNutritif);
     }
-    
-    //operation de recherche sur tous les elements de la region
+
+    /**
+     *
+     * @return liste des elementNutritifs
+     */
     public List<ElementNutritif> findAll() {
         return elementNutritifRepository.findAll();
     }
-    
-     // Rechercher par le ID
+
+    /**
+     *
+     * @param id
+     * @return liste des elementNutritif par id
+     */
     public ElementNutritif findById(Long id) {
         return elementNutritifRepository.findById(id).orElse(null);
     }
-    
-    //pour faire la mise a jours d'un seul element: le libelle de la ElementNutritif
+
+    /**
+     *
+     * @param id
+     * @param newLibelleElementNutritif
+     * @return modifier le libelle de elementNutritif
+     */
     public Optional<ElementNutritif> updateLibelleElementNutritif(Long id, String newLibelleElementNutritif) {
         Optional<ElementNutritif> elementNutritifOptional = elementNutritifRepository.findById(id);
         if (elementNutritifOptional.isPresent()) {
@@ -47,7 +63,11 @@ public class ElementNutritifService {
         }
         return elementNutritifOptional;
     }
-    
+
+    /**
+     *
+     * @param id suppimer un elementNutritif
+     */
     public void deleteElementNutritifById(Long id) {
         Optional<ElementNutritif> elementNutritif = elementNutritifRepository.findById(id);
         if (elementNutritif.isPresent()) {

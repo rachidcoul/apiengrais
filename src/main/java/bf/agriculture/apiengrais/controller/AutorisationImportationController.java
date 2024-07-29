@@ -39,9 +39,8 @@ public class AutorisationImportationController {
     @Autowired
     private AutorisationImportationService autorisationImportationService;
 
-    
     /**
-     * 
+     *
      * @param autorisationImportation
      * @return autorisationImportations ajouter
      */
@@ -49,51 +48,47 @@ public class AutorisationImportationController {
     public AutorisationImportation save(@RequestBody AutorisationImportation autorisationImportation) {
         return autorisationImportationService.save(autorisationImportation);
     }
-    
-    
+
     /**
-     * 
+     *
      * @return liste des autorisationImportation
      */
     @GetMapping
-    public List<AutorisationImportation> findAll(){
+    public List<AutorisationImportation> findAll() {
         return autorisationImportationService.findAll();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
-     * @return autorisationImportation par id
+     * @return liste des autorisationImportation par id
      */
     @GetMapping("/{id}")
-    public AutorisationImportation findById(@PathVariable Long id){
+    public AutorisationImportation findById(@PathVariable Long id) {
         return autorisationImportationService.findById(id);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param autorisationImportation
-     * @return Mise a jours des elements de la table region
+     * @return Mise d'une autorisation d'importation
      */
     @PutMapping
     public AutorisationImportation update(@RequestBody AutorisationImportation autorisationImportation) {
         return autorisationImportationService.save(autorisationImportation);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @param updates
-     * @return chant libelle modifier
+     * @return modifier le libelle d'une autorisation d'importation
      */
     @PatchMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateLibelleAutorisationImportation(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newLibelleAutorisationImportation = updates.get("libelle");
         Optional<AutorisationImportation> updatedAutorisationImportation = autorisationImportationService.updateLibelleAutorisationImportation(id, newLibelleAutorisationImportation);
-        
+
         if (updatedAutorisationImportation.isPresent()) {
             Map<String, String> response = new HashMap<>();
             response.put("message", "AutorisationImportation updated successfully");
@@ -102,10 +97,9 @@ public class AutorisationImportationController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return autorisationImportation supprimer avec message de confirmation
      */
@@ -114,13 +108,12 @@ public class AutorisationImportationController {
         autorisationImportationService.deleteAutorisationImportationById(id);
         return ResponseEntity.noContent().build();
     }
-    
-/*
+
+    /*
     //Supression simple avec appel de fonction depuis le region service
     @DeleteMapping("/{id}")
     public void deleteAutorisationImportation(@PathVariable Long id) {
         autorisationImportationService.deleteAutorisationImportationById(id);
     }
-*/
-
+     */
 }

@@ -22,17 +22,28 @@ public class CommuneService {
     @Autowired
     CommuneRepository communeRepository;
 
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param commune
+     * @return ajouter une commune
+     */
     public Commune save(Commune commune) {
         return communeRepository.save(commune);
     }
 
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return liste des communes
+     */
     public List<Commune> findAll() {
         return communeRepository.findAll();
     }
 
-    // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return liste des commune par id
+     */
     public Commune findById(Long id) {
         return communeRepository.findById(id).orElse(null);
     }

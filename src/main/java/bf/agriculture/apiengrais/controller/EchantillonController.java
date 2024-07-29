@@ -29,10 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/echantillon")
-
-/**
- * acceder aux donner de la table Echantillon
- */
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class EchantillonController {
 
@@ -51,7 +47,7 @@ public class EchantillonController {
 
     /**
      *
-     * @return liste des echantillon
+     * @return liste des echantillons
      */
     @GetMapping
     public List<Echantillon> findAll() {
@@ -61,7 +57,7 @@ public class EchantillonController {
     /**
      *
      * @param id
-     * @return echantillon par id
+     * @return liste d'un echantillon par id
      */
     @GetMapping("/{id}")
     public Echantillon findById(@PathVariable Long id) {
@@ -71,34 +67,14 @@ public class EchantillonController {
     /**
      *
      * @param echantillon
-     * @return Mise a jours des elements de la table region
+     * @return Mise a jours des elements d'un echantillon
      */
     @PutMapping
     public Echantillon update(@RequestBody Echantillon echantillon) {
         return echantillonService.save(echantillon);
     }
 
-    /**
-     *
-     * @param id
-     * @param updates
-     * @return chant libelle modifier
-     */
-    /*
-    @PatchMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateLibelleEchantillon(@PathVariable Long id, @RequestBody Map<String, String> updates) {
-        String newLibelleEchantillon = updates.get("libelle");
-        Optional<Echantillon> updatedEchantillon = echantillonService.updateLibelleEchantillon(id, newLibelleEchantillon);
-        
-        if (updatedEchantillon.isPresent()) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Echantillon updated successfully");
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-     */
+   
     /**
      *
      * @param id

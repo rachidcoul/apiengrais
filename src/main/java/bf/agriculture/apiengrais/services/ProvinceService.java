@@ -22,22 +22,38 @@ public class ProvinceService {
     @Autowired
     ProvinceRepository provinceRepository;
     
-    // sauvegarder autorisation d'Importation
+    /**
+     * 
+     * @param province
+     * @return sauvegarder la province
+     */
     public Province save(Province province){
         return provinceRepository.save(province);
     }
     
-    //operation de recherche sur tous les elements de la region
+    /**
+     * 
+     * @return la liste des provinces
+     */
     public List<Province> findAll() {
         return provinceRepository.findAll();
     }
     
-     // Rechercher par le ID
+    /**
+     * 
+     * @param id
+     * @return la liste des province en fonction du id
+     */
     public Province findById(Long id) {
         return provinceRepository.findById(id).orElse(null);
     }
     
-    //pour faire la mise a jours d'un seul element: le libelle de la Province
+    /**
+     * 
+     * @param id
+     * @param newLibelleProvince
+     * @return modifier libelle de la province
+     */
     public Optional<Province> updateLibelleProvince(Long id, String newLibelleProvince) {
         Optional<Province> provinceOptional = provinceRepository.findById(id);
         if (provinceOptional.isPresent()) {
@@ -48,6 +64,11 @@ public class ProvinceService {
         return provinceOptional;
     }
     
+    /**
+     * 
+     * @param id 
+     * suppression de la province en fonction du id
+     */
     public void deleteProvinceById(Long id) {
         Optional<Province> province = provinceRepository.findById(id);
         if (province.isPresent()) {

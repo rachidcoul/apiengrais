@@ -18,27 +18,58 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DemandeAgrementService {
-    
+
     @Autowired
     DemandeAgrementRepository demandeAgrementRepository;
-    
-    // sauvegarder autorisation d'Importation
-    public DemandeAgrement save(DemandeAgrement demandeAgrement){
+
+    /**
+     *
+     * @param demandeAgrement
+     * @return ajouter une demande d'agrements
+     */
+    public DemandeAgrement save(DemandeAgrement demandeAgrement) {
         return demandeAgrementRepository.save(demandeAgrement);
     }
-    
-    //operation de recherche sur tous les elements de la region
+
+    /**
+     *
+     * @return liste des demandes agresments
+     */
     public List<DemandeAgrement> findAll() {
         return demandeAgrementRepository.findAll();
     }
-    
-     // Rechercher par le ID
+
+    /**
+     *
+     * @param id
+     * @return demande agrement par id
+     */
     public DemandeAgrement findById(Long id) {
         return demandeAgrementRepository.findById(id).orElse(null);
     }
-    
-    
-    //pour faire la mise a jours d'un seul element: le libelle de la DemandeAgrement
+
+    /**
+     *
+     * @param id
+     * @param newNumRccmDemandeAgrement
+     * @return modofier le numero RCCM
+     */
+    public Optional<DemandeAgrement> updateNumRccmDemandeAgrement(Long id, String newNumRccmDemandeAgrement) {
+        Optional<DemandeAgrement> demandeAgrementOptional = demandeAgrementRepository.findById(id);
+        if (demandeAgrementOptional.isPresent()) {
+            DemandeAgrement demandeAgrement = demandeAgrementOptional.get();
+            demandeAgrement.setNumRccm(newNumRccmDemandeAgrement);
+            demandeAgrementRepository.save(demandeAgrement);
+        }
+        return demandeAgrementOptional;
+    }
+
+    /**
+     *
+     * @param id
+     * @param newActiviteDemandeAgrement
+     * @return modifier activite de demande agrement
+     */
     public Optional<DemandeAgrement> updateActiviteDemandeAgrement(Long id, String newActiviteDemandeAgrement) {
         Optional<DemandeAgrement> demandeAgrementOptional = demandeAgrementRepository.findById(id);
         if (demandeAgrementOptional.isPresent()) {
@@ -49,7 +80,26 @@ public class DemandeAgrementService {
         return demandeAgrementOptional;
     }
 
-    
+    /**
+     *
+     * @param id
+     * @param newNumIfuDemandeAgrement
+     * @return modifier le numero ifu
+     */
+    public Optional<DemandeAgrement> updateNumIfuDemandeAgrement(Long id, String newNumIfuDemandeAgrement) {
+        Optional<DemandeAgrement> demandeAgrementOptional = demandeAgrementRepository.findById(id);
+        if (demandeAgrementOptional.isPresent()) {
+            DemandeAgrement demandeAgrement = demandeAgrementOptional.get();
+            demandeAgrement.setNumIfu(newNumIfuDemandeAgrement);
+            demandeAgrementRepository.save(demandeAgrement);
+        }
+        return demandeAgrementOptional;
+    }
+
+    /**
+     *
+     * @param id suppression de la demande d'agrement
+     */
     public void deleteDemandeAgrementById(Long id) {
         Optional<DemandeAgrement> demandeAgrement = demandeAgrementRepository.findById(id);
         if (demandeAgrement.isPresent()) {

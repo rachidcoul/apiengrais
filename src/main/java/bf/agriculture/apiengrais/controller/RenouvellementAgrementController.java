@@ -39,9 +39,8 @@ public class RenouvellementAgrementController {
     @Autowired
     private RenouvellementAgrementService renouvellementAgrementService;
 
-    
     /**
-     * 
+     *
      * @param renouvellementAgrement
      * @return renouvellementAgrements ajouter
      */
@@ -49,31 +48,28 @@ public class RenouvellementAgrementController {
     public RenouvellementAgrement save(@RequestBody RenouvellementAgrement renouvellementAgrement) {
         return renouvellementAgrementService.save(renouvellementAgrement);
     }
-    
-    
+
     /**
-     * 
+     *
      * @return liste des renouvellementAgrement
      */
     @GetMapping
-    public List<RenouvellementAgrement> findAll(){
+    public List<RenouvellementAgrement> findAll() {
         return renouvellementAgrementService.findAll();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return renouvellementAgrement par id
      */
     @GetMapping("/{id}")
-    public RenouvellementAgrement findById(@PathVariable Long id){
+    public RenouvellementAgrement findById(@PathVariable Long id) {
         return renouvellementAgrementService.findById(id);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param renouvellementAgrement
      * @return Mise a jours des elements de la table region
      */
@@ -81,33 +77,9 @@ public class RenouvellementAgrementController {
     public RenouvellementAgrement update(@RequestBody RenouvellementAgrement renouvellementAgrement) {
         return renouvellementAgrementService.save(renouvellementAgrement);
     }
-    
-    
+
     /**
-     * 
-     * @param id
-     * @param updates
-     * @return chant libelle modifier
-     */
-    /*
-    @PatchMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateLibelleRenouvellementAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
-        String newLibelleRenouvellementAgrement = updates.get("libelle");
-        Optional<RenouvellementAgrement> updatedRenouvellementAgrement = renouvellementAgrementService.updateLibelleRenouvellementAgrement(id, newLibelleRenouvellementAgrement);
-        
-        if (updatedRenouvellementAgrement.isPresent()) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "RenouvellementAgrement updated successfully");
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    */
-    
-    
-    /**
-     * 
+     *
      * @param id
      * @return renouvellementAgrement supprimer avec message de confirmation
      */
@@ -116,13 +88,12 @@ public class RenouvellementAgrementController {
         renouvellementAgrementService.deleteRenouvellementAgrementById(id);
         return ResponseEntity.noContent().build();
     }
-    
-/*
+
+    /*
     //Supression simple avec appel de fonction depuis le region service
     @DeleteMapping("/{id}")
     public void deleteRenouvellementAgrement(@PathVariable Long id) {
         renouvellementAgrementService.deleteRenouvellementAgrementById(id);
     }
-*/
-
+     */
 }
