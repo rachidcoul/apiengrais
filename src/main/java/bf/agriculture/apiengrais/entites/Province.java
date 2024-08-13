@@ -5,14 +5,20 @@
 package bf.agriculture.apiengrais.entites;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +33,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Province {
+public class Province implements Serializable {
     
      @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codeDgess;
     private String codeIgb;
@@ -40,9 +47,15 @@ public class Province {
     @JoinColumn(name = "id_region")
     private Region region;
     
-    @OneToMany (mappedBy = "province", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany (mappedBy = "province")
     @JsonManagedReference
+    @JsonIgnore
     private List<Commune> communes;
+    
+    public static List<Province> sortProvincessByLibelle(List<Province> provinces) {
+        Collections.sort(provinces, Comparator.comparing(Province::getLibelle));
+        return provinces;
+    }
     
     
 }

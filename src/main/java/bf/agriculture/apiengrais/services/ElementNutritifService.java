@@ -35,8 +35,15 @@ public class ElementNutritifService {
      *
      * @return liste des elementNutritifs
      */
+    /*
     public List<ElementNutritif> findAll() {
         return elementNutritifRepository.findAll();
+    }
+    */
+    
+    public List<ElementNutritif> getSortedElementNutritifsByLibelle() {
+        List<ElementNutritif> elementNutritifs = elementNutritifRepository.findAll();
+        return ElementNutritif.sortElementNutritifsByLibelle(elementNutritifs);
     }
 
     /**

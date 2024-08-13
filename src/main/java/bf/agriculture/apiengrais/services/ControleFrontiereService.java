@@ -36,8 +36,15 @@ public class ControleFrontiereService {
      * @return 
      * liste des controleFrontiere
      */
+    /*
     public List<ControleFrontiere> findAll() {
         return controleFrontiereRepository.findAll();
+    }
+    */
+    
+    public List<ControleFrontiere> getSortedFrontieresByDateControle() {
+        List<ControleFrontiere> controleFrontieres = controleFrontiereRepository.findAll();
+        return ControleFrontiere.sortControleFrontieresByDateControle(controleFrontieres);
     }
     
     /**

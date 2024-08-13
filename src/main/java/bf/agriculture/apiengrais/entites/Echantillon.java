@@ -5,14 +5,20 @@
 package bf.agriculture.apiengrais.entites;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import lombok.Getter;
@@ -28,9 +34,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Echantillon {
+public class Echantillon implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long numInspection;
     private Long numLabo;
@@ -48,8 +55,14 @@ public class Echantillon {
     @JsonBackReference
     private TypeEngrais typeEngrais;
 
-    @OneToMany(mappedBy = "echantillon", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "echantillon")
     @JsonManagedReference
+    @JsonIgnore   
     private List<Resultat> resultats;
+    
+    public static List<Echantillon> sortEchantillonsByNumInspection(List<Echantillon> echantillons) {
+        Collections.sort(echantillons, Comparator.comparing(Echantillon::getNumInspection));
+        return echantillons;
+    }
 
 }

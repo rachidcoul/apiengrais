@@ -5,6 +5,7 @@
 package bf.agriculture.apiengrais.services;
 
 import bf.agriculture.apiengrais.entites.ControleInterne;
+import bf.agriculture.apiengrais.entites.Region;
 import bf.agriculture.apiengrais.repositories.ControleInterneRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
@@ -35,8 +36,14 @@ public class ControleInterneService {
      * 
      * @return lister les controleInternes
      */
+    /*
     public List<ControleInterne> findAll() {
         return controleInterneRepository.findAll();
+    }
+    */
+    public List<ControleInterne> getSortedControleInternesByDateControle() {
+        List<ControleInterne> controleInternes = controleInterneRepository.findAll();
+        return ControleInterne.sortControleInternesByDateControle(controleInternes);
     }
     
     /**

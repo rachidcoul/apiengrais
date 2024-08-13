@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,16 +29,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/region")
+@RequestMapping("/api/regions")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class RegionController {
 
     @Autowired
     private RegionService regionService;
 
-    
     /**
-     * 
+     *
      * @param region
      * @return ajouter une region
      */
@@ -45,31 +45,28 @@ public class RegionController {
     public Region save(@RequestBody Region region) {
         return regionService.save(region);
     }
-    
-    
+
     /**
-     * 
+     *
      * @return liste des region
      */
     @GetMapping
-    public List<Region> findAll(){
-        return regionService.findAll();
+    public List<Region> findAll() {
+        return regionService.getSortedRegionsByLibelle();
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return liste de region par id
      */
     @GetMapping("/{id}")
-    public Region findById(@PathVariable Long id){
+    public Region findById(@PathVariable Long id) {
         return regionService.findById(id);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param region
      * @return Mise a jours des elements de la table region
      */
@@ -77,19 +74,18 @@ public class RegionController {
     public Region update(@RequestBody Region region) {
         return regionService.save(region);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @param updates
-     * @return modifier le  libelle region
+     * @return modifier le libelle region
      */
     @PatchMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateLibelleRegion(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newLibelleRegion = updates.get("libelle");
         Optional<Region> updatedRegion = regionService.updateLibelleRegion(id, newLibelleRegion);
-        
+
         if (updatedRegion.isPresent()) {
             Map<String, String> response = new HashMap<>();
             response.put("message", "Region updated successfully");
@@ -98,10 +94,9 @@ public class RegionController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return region supprimer avec message de confirmation
      */
@@ -110,13 +105,12 @@ public class RegionController {
         regionService.deleteRegionById(id);
         return ResponseEntity.noContent().build();
     }
-    
-/*
+
+    /*
     //Supression simple avec appel de fonction depuis le region service
     @DeleteMapping("/{id}")
     public void deleteRegion(@PathVariable Long id) {
         regionService.deleteRegionById(id);
     }
-*/
-
+     */
 }

@@ -35,8 +35,15 @@ public class EchantillonService {
      * 
      * @return lister les echantillons
      */
+    /*
     public List<Echantillon> findAll() {
         return echantillonRepository.findAll();
+    }
+    */
+    
+    public List<Echantillon> getSortedEchantillonsByNumInspection() {
+        List<Echantillon> echantillons = echantillonRepository.findAll();
+        return Echantillon.sortEchantillonsByNumInspection(echantillons);
     }
     
     /**

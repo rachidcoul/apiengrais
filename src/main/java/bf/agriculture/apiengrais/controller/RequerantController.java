@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/requerant")
+@RequestMapping("/api/requerants")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class RequerantController {
 
@@ -45,15 +45,14 @@ public class RequerantController {
     public Requerant save(@RequestBody Requerant requerant) {
         return requerantService.save(requerant);
     }
-    
-    
+        
     /**
      * 
      * @return liste des requerants
      */
     @GetMapping
     public List<Requerant> findAll(){
-        return requerantService.findAll();
+        return requerantService.getSortedRequerantsByNomPrenom();
     }
     
     
@@ -85,7 +84,7 @@ public class RequerantController {
      * @param updates
      * @return chant NomPrenom modifier
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/nom_prenom")
     public ResponseEntity<Map<String, String>> updateNomPrenonRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newNomPrenonRequerant = updates.get("nom_prenom");
         Optional<Requerant> updatedRequerant = requerantService.updateNomPrenomRequerant(id, newNomPrenonRequerant);
@@ -105,7 +104,7 @@ public class RequerantController {
      * @param updates
      * @return modifier le contact de libelle
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/contact")
     public ResponseEntity<Map<String, String>> updateContactRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newContactRequerant = updates.get("contact");
         Optional<Requerant> updatedRequerant = requerantService.updateContactRequerant(id, newContactRequerant);
@@ -125,7 +124,7 @@ public class RequerantController {
      * @param updates
      * @return modifier le email de requerant
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/email")
     public ResponseEntity<Map<String, String>> updateEmailRequerant(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newEmailRequerant = updates.get("email");
         Optional<Requerant> updatedRequerant = requerantService.updateEmailRequerant(id, newEmailRequerant);

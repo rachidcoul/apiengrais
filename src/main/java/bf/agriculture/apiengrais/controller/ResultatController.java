@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/resultat")
+@RequestMapping("/api/resultats")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ResultatController {
 

@@ -35,8 +35,15 @@ public class AutorisationImportationService {
      *
      * @return liste des autorisations d'importation
      */
+    /*
     public List<AutorisationImportation> findAll() {
         return autorisationImportationRepository.findAll();
+    }
+    */
+    
+    public List<AutorisationImportation> getSortedAutorisationImportationByNumero() {
+        List<AutorisationImportation> autorisationImportations = autorisationImportationRepository.findAll();
+        return AutorisationImportation.sortAutorisationImportationsByNumero(autorisationImportations);
     }
 
     /**

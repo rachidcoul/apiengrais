@@ -36,8 +36,15 @@ public class TypeEngraisService {
      * @return 
      * lister les typeEngrais
      */
+    /*
     public List<TypeEngrais> findAll() {
         return typeEngraisRepository.findAll();
+    }
+    */
+    
+    public List<TypeEngrais> getSortedTypeEngraissByLibelle() {
+        List<TypeEngrais> typeEngraiss = typeEngraisRepository.findAll();
+        return TypeEngrais.sortTypeEngraissByLibelle(typeEngraiss);
     }
     
     /**
@@ -45,6 +52,7 @@ public class TypeEngraisService {
      * @param id
      * @return lister le typeEngrais par id
      */
+    
     public TypeEngrais findById(Long id) {
         return typeEngraisRepository.findById(id).orElse(null);
     }

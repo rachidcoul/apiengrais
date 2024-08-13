@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/demandeAgrement")
+@RequestMapping("/api/demandeAgrements")
 
 /**
  * acceder aux donner de la table DemandeAgrement
@@ -55,7 +55,7 @@ public class DemandeAgrementController {
      */
     @GetMapping
     public List<DemandeAgrement> findAll() {
-        return demandeAgrementService.findAll();
+        return demandeAgrementService.getSortedAgrementsByCodeAgrement();
     }
 
     /**
@@ -84,7 +84,8 @@ public class DemandeAgrementController {
      * @param updates
      * @return modifier le numero rccm
      */
-    @PatchMapping("/{id}")
+    
+    @PatchMapping("/{id}/numRccm")
     public ResponseEntity<Map<String, String>> updateNumRccmDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newNumRccmDemandeAgrement = updates.get("numRccm");
         Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateNumRccmDemandeAgrement(id, newNumRccmDemandeAgrement);
@@ -97,6 +98,7 @@ public class DemandeAgrementController {
             return ResponseEntity.notFound().build();
         }
     }
+    
 
     /**
      *
@@ -104,7 +106,7 @@ public class DemandeAgrementController {
      * @param updates
      * @return modifier le numIFU
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/numIfu")
     public ResponseEntity<Map<String, String>> updateNumIfuDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newNumIfuDemandeAgrement = updates.get("numIfu");
         Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateNumIfuDemandeAgrement(id, newNumIfuDemandeAgrement);
@@ -124,7 +126,8 @@ public class DemandeAgrementController {
      * @param updates
      * @return modifier activite
      */
-    @PatchMapping("/{id}")
+    
+    @PatchMapping("/{id}/activite")
     public ResponseEntity<Map<String, String>> updatActiviteDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newActiviteDemandeAgrement = updates.get("activite");
         Optional<DemandeAgrement> updatedDemandeAgrement = demandeAgrementService.updateActiviteDemandeAgrement(id, newActiviteDemandeAgrement);
@@ -137,6 +140,7 @@ public class DemandeAgrementController {
             return ResponseEntity.notFound().build();
         }
     }
+    
 
     /**
      *

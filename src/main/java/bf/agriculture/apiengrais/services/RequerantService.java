@@ -35,8 +35,15 @@ public class RequerantService {
      * 
      * @return liste des requerants
      */
+    /*
     public List<Requerant> findAll() {
         return requerantRepository.findAll();
+    }
+    */
+    
+    public List<Requerant> getSortedRequerantsByNomPrenom() {
+        List<Requerant> requerants = requerantRepository.findAll();
+        return Requerant.sortRequerantsByNomPrenom(requerants);
     }
     
      // Rechercher par le ID

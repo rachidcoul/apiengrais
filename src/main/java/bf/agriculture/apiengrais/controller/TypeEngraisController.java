@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/typeEngrais")
+@RequestMapping("/api/typeEngraiss")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class TypeEngraisController {
 
@@ -53,7 +53,7 @@ public class TypeEngraisController {
      */
     @GetMapping
     public List<TypeEngrais> findAll(){
-        return typeEngraisService.findAll();
+        return typeEngraisService.getSortedTypeEngraissByLibelle();
     }
     
     
@@ -85,7 +85,7 @@ public class TypeEngraisController {
      * @param updates
      * @return chant libelle modifier
      */
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}/libelle")
     public ResponseEntity<Map<String, String>> updateLibelleTypeEngrais(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newLibelleTypeEngrais = updates.get("libelle");
         Optional<TypeEngrais> updatedTypeEngrais = typeEngraisService.updateLibelleTypeEngrais(id, newLibelleTypeEngrais);

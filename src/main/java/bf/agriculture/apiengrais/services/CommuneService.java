@@ -35,10 +35,17 @@ public class CommuneService {
      * 
      * @return liste des communes
      */
+    /*
     public List<Commune> findAll() {
         return communeRepository.findAll();
     }
+    */
 
+    public List<Commune> getSortedCommunesByLibelle() {
+        List<Commune> communes = communeRepository.findAll();
+        return Commune.sortCommunesByLibelle(communes);
+    }
+    
     /**
      * 
      * @param id
@@ -47,7 +54,7 @@ public class CommuneService {
     public Commune findById(Long id) {
         return communeRepository.findById(id).orElse(null);
     }
-
+    
     
     
     /**

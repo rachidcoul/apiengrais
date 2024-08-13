@@ -35,8 +35,15 @@ public class ProvinceService {
      * 
      * @return la liste des provinces
      */
+    /*
     public List<Province> findAll() {
         return provinceRepository.findAll();
+    }
+    */
+    
+    public List<Province> getSortedProvincesByLibelle() {
+        List<Province> provinces = provinceRepository.findAll();
+        return Province.sortProvincessByLibelle(provinces);
     }
     
     /**

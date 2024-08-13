@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/renouvellementAgrement")
+@RequestMapping("/api/renouvellementAgrements")
 
 /**
  * acceder aux donner de la table RenouvellementAgrement

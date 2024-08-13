@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/elementNutritif")
+@RequestMapping("/api/elementNutritifs")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ElementNutritifController {
 
@@ -53,7 +53,7 @@ public class ElementNutritifController {
      */
     @GetMapping
     public List<ElementNutritif> findAll(){
-        return elementNutritifService.findAll();
+        return elementNutritifService.getSortedElementNutritifsByLibelle();
     }
     
     

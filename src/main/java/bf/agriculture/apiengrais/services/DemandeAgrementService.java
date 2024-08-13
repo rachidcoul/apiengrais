@@ -35,8 +35,15 @@ public class DemandeAgrementService {
      *
      * @return liste des demandes agresments
      */
+    /*
     public List<DemandeAgrement> findAll() {
         return demandeAgrementRepository.findAll();
+    }
+    */
+    
+    public List<DemandeAgrement> getSortedAgrementsByCodeAgrement() {
+        List<DemandeAgrement> demandeAgrements = demandeAgrementRepository.findAll();
+        return DemandeAgrement.sortDemandeAgrementsByCodeAgrement(demandeAgrements);
     }
 
     /**

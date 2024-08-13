@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/controleInterne")
+@RequestMapping("/api/controleInternes")
 
 /**
  * acceder aux donner de la table ControleInterne
@@ -55,7 +55,7 @@ public class ControleInterneController {
      */
     @GetMapping
     public List<ControleInterne> findAll() {
-        return controleInterneService.findAll();
+        return controleInterneService.getSortedControleInternesByDateControle();
     }
 
     /**

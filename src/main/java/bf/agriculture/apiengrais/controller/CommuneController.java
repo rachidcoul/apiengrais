@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/commune")
+@RequestMapping("/api/communes")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class CommuneController {
 
@@ -42,7 +42,7 @@ public class CommuneController {
     
     @GetMapping
     public List<Commune> findAll(){
-        return communeService.findAll();
+        return communeService.getSortedCommunesByLibelle();
     }
     
     @GetMapping("/{id}")

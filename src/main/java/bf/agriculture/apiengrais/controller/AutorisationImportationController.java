@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/autorisationImportation")
+@RequestMapping("/api/autorisationImportations")
 
 /**
  * acceder aux donner de la table AutorisationImportation
@@ -55,7 +55,7 @@ public class AutorisationImportationController {
      */
     @GetMapping
     public List<AutorisationImportation> findAll() {
-        return autorisationImportationService.findAll();
+        return autorisationImportationService.getSortedAutorisationImportationByNumero();
     }
 
     /**

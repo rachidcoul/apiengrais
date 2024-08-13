@@ -4,12 +4,17 @@
  */
 package bf.agriculture.apiengrais.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,17 +29,25 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class TypeEngrais {
+public class TypeEngrais implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
 
-    @OneToMany(mappedBy = "typeEngrais", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "typeEngrais")
     @JsonManagedReference
+    @JsonIgnore
     private List<Echantillon> echantillons;
 
-    @OneToMany(mappedBy = "typeEngrais", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "typeEngrais")
     @JsonManagedReference
+    @JsonIgnore
     private List<ElementNutritif> ElementNutritif;
+    
+    public static List<TypeEngrais> sortTypeEngraissByLibelle(List<TypeEngrais> typeEngraiss) {
+        Collections.sort(typeEngraiss, Comparator.comparing(TypeEngrais::getLibelle));
+        return typeEngraiss;
+    }
 }

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/controleFrontiere")
+@RequestMapping("/api/controleFrontieres")
 
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ControleFrontiereController {
@@ -52,7 +52,7 @@ public class ControleFrontiereController {
      */
     @GetMapping
     public List<ControleFrontiere> findAll(){
-        return controleFrontiereService.findAll();
+        return controleFrontiereService.getSortedFrontieresByDateControle();
     }
     
     /**

@@ -35,9 +35,17 @@ public class RegionService {
      * 
      * @return la liste des regions
      */
+    /*
     public List<Region> findAll() {
         return regionRepository.findAll();
     }
+    */
+    
+    public List<Region> getSortedRegionsByLibelle() {
+        List<Region> regions = regionRepository.findAll();
+        return Region.sortRegionsByLibelle(regions);
+    }
+    
     
     /**
      * 

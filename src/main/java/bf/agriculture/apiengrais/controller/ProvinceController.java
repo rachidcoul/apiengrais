@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author car
  */
 @RestController
-@RequestMapping("/api/province")
+@RequestMapping("/api/provinces")
 @CrossOrigin("*")//pour permettre au front de d'acceder aux donnees du restcontroller
 public class ProvinceController {
 
@@ -53,7 +53,7 @@ public class ProvinceController {
      */
     @GetMapping
     public List<Province> findAll(){
-        return provinceService.findAll();
+        return provinceService.getSortedProvincesByLibelle();
     }
     
     
