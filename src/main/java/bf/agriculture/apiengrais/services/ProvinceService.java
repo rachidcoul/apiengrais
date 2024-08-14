@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.Province;
 import bf.agriculture.apiengrais.repositories.ProvinceRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,45 +19,40 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProvinceService {
-    
+
     @Autowired
     ProvinceRepository provinceRepository;
-    
+
     /**
-     * 
+     *
      * @param province
      * @return sauvegarder la province
      */
-    public Province save(Province province){
+    public Province save(Province province) {
         return provinceRepository.save(province);
     }
-    
+
     /**
-     * 
+     *
      * @return la liste des provinces
      */
-    /*
-    public List<Province> findAll() {
-        return provinceRepository.findAll();
-    }
-    */
-    
     public List<Province> getSortedProvincesByLibelle() {
         List<Province> provinces = provinceRepository.findAll();
-        return Province.sortProvincessByLibelle(provinces);
+        provinces.sort(Comparator.comparing(Province::getLibelle));
+        return provinces;
     }
-    
+
     /**
-     * 
+     *
      * @param id
      * @return la liste des province en fonction du id
      */
     public Province findById(Long id) {
         return provinceRepository.findById(id).orElse(null);
     }
-    
+
     /**
-     * 
+     *
      * @param id
      * @param newLibelleProvince
      * @return modifier libelle de la province
@@ -70,11 +66,10 @@ public class ProvinceService {
         }
         return provinceOptional;
     }
-    
+
     /**
-     * 
-     * @param id 
-     * suppression de la province en fonction du id
+     *
+     * @param id suppression de la province en fonction du id
      */
     public void deleteProvinceById(Long id) {
         Optional<Province> province = provinceRepository.findById(id);

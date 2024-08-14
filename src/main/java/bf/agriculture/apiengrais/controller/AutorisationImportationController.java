@@ -55,7 +55,7 @@ public class AutorisationImportationController {
      */
     @GetMapping
     public List<AutorisationImportation> findAll() {
-        return autorisationImportationService.getSortedAutorisationImportationByNumero();
+        return autorisationImportationService.getSortedAutorisationImportationsByNumero();
     }
 
     /**

@@ -17,8 +17,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,10 +52,5 @@ public class Commune implements Serializable {
     @JsonManagedReference
     @JsonIgnore
     private List<Requerant> requerants;
-    
-    public static List<Commune> sortCommunesByLibelle(List<Commune> communes) {
-        Collections.sort(communes, Comparator.comparing(Commune::getLibelle));
-        return communes;
-    }
 
 }

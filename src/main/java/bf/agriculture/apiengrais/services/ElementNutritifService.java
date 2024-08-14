@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.ElementNutritif;
 import bf.agriculture.apiengrais.repositories.ElementNutritifRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class ElementNutritifService {
     
     public List<ElementNutritif> getSortedElementNutritifsByLibelle() {
         List<ElementNutritif> elementNutritifs = elementNutritifRepository.findAll();
-        return ElementNutritif.sortElementNutritifsByLibelle(elementNutritifs);
+        elementNutritifs.sort(Comparator.comparing(ElementNutritif::getLibelle));
+        return elementNutritifs;
     }
 
     /**

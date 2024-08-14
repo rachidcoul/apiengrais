@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.ControleFrontiere;
 import bf.agriculture.apiengrais.repositories.ControleFrontiereRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,11 @@ public class ControleFrontiereService {
      * @return 
      * liste des controleFrontiere
      */
-    /*
-    public List<ControleFrontiere> findAll() {
-        return controleFrontiereRepository.findAll();
-    }
-    */
-    
-    public List<ControleFrontiere> getSortedFrontieresByDateControle() {
+        
+    public List<ControleFrontiere> getSortedControleFrontieresByDateControle() {
         List<ControleFrontiere> controleFrontieres = controleFrontiereRepository.findAll();
-        return ControleFrontiere.sortControleFrontieresByDateControle(controleFrontieres);
+        controleFrontieres.sort(Comparator.comparing(ControleFrontiere::getDateControle));
+        return controleFrontieres;
     }
     
     /**

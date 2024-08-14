@@ -55,7 +55,7 @@ public class DemandeAgrementController {
      */
     @GetMapping
     public List<DemandeAgrement> findAll() {
-        return demandeAgrementService.getSortedAgrementsByCodeAgrement();
+        return demandeAgrementService.getSortedDemandeAgrementsByCodeAgrement();
     }
 
     /**

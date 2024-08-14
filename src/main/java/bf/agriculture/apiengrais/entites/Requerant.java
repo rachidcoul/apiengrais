@@ -7,7 +7,6 @@ package bf.agriculture.apiengrais.entites;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +16,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import lombok.Getter;
@@ -54,10 +51,5 @@ public class Requerant implements Serializable {
     @JsonManagedReference
     @JsonIgnore
     private List<DemandeAgrement> demandeAgrement;
-    
-    public static List<Requerant> sortRequerantsByNomPrenom(List<Requerant> requerants) {
-        Collections.sort(requerants, Comparator.comparing(Requerant::getNomPrenom));
-        return requerants;
-    }
 
 }

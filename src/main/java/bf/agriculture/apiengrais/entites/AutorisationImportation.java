@@ -17,8 +17,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,10 +48,5 @@ public class AutorisationImportation implements Serializable {
     @JsonManagedReference
     @JsonIgnore
     private List<ControleFrontiere> ControleFrontieres;
-    
-    public static List<AutorisationImportation> sortAutorisationImportationsByNumero(List<AutorisationImportation> autorisationImportations) {
-        Collections.sort(autorisationImportations, Comparator.comparing(AutorisationImportation::getNumero));
-        return autorisationImportations;
-    }
 
 }

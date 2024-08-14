@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.Requerant;
 import bf.agriculture.apiengrais.repositories.RequerantRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class RequerantService {
     
     public List<Requerant> getSortedRequerantsByNomPrenom() {
         List<Requerant> requerants = requerantRepository.findAll();
-        return Requerant.sortRequerantsByNomPrenom(requerants);
+        requerants.sort(Comparator.comparing(Requerant::getNomPrenom));
+        return requerants;
     }
     
      // Rechercher par le ID

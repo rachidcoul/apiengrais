@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.DemandeAgrement;
 import bf.agriculture.apiengrais.repositories.DemandeAgrementRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,10 @@ public class DemandeAgrementService {
      *
      * @return liste des demandes agresments
      */
-    /*
-    public List<DemandeAgrement> findAll() {
-        return demandeAgrementRepository.findAll();
-    }
-    */
-    
-    public List<DemandeAgrement> getSortedAgrementsByCodeAgrement() {
+    public List<DemandeAgrement> getSortedDemandeAgrementsByCodeAgrement() {
         List<DemandeAgrement> demandeAgrements = demandeAgrementRepository.findAll();
-        return DemandeAgrement.sortDemandeAgrementsByCodeAgrement(demandeAgrements);
+        demandeAgrements.sort(Comparator.comparing(DemandeAgrement::getCodeAgrement));
+        return demandeAgrements;
     }
 
     /**

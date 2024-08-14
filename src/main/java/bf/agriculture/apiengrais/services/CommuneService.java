@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.Commune;
 import bf.agriculture.apiengrais.repositories.CommuneRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,11 @@ public class CommuneService {
      * 
      * @return liste des communes
      */
-    /*
-    public List<Commune> findAll() {
-        return communeRepository.findAll();
-    }
-    */
-
+   
     public List<Commune> getSortedCommunesByLibelle() {
         List<Commune> communes = communeRepository.findAll();
-        return Commune.sortCommunesByLibelle(communes);
+        communes.sort(Comparator.comparing(Commune::getLibelle));
+        return communes;
     }
     
     /**

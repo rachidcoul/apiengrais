@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.Echantillon;
 import bf.agriculture.apiengrais.repositories.EchantillonRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class EchantillonService {
     
     public List<Echantillon> getSortedEchantillonsByNumInspection() {
         List<Echantillon> echantillons = echantillonRepository.findAll();
-        return Echantillon.sortEchantillonsByNumInspection(echantillons);
+        echantillons.sort(Comparator.comparing(Echantillon::getNumInspection));
+        return echantillons;
     }
     
     /**

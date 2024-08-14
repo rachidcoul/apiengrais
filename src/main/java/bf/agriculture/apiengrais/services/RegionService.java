@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.Region;
 import bf.agriculture.apiengrais.repositories.RegionRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,47 +19,40 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RegionService {
-    
+
     @Autowired
     RegionRepository regionRepository;
-    
+
     /**
-     * 
+     *
      * @param region
      * @return region Sauvegarder
      */
-    public Region save(Region region){
+    public Region save(Region region) {
         return regionRepository.save(region);
     }
-    
+
     /**
-     * 
+     *
      * @return la liste des regions
      */
-    /*
-    public List<Region> findAll() {
-        return regionRepository.findAll();
-    }
-    */
-    
     public List<Region> getSortedRegionsByLibelle() {
         List<Region> regions = regionRepository.findAll();
-        return Region.sortRegionsByLibelle(regions);
+        regions.sort(Comparator.comparing(Region::getLibelle));
+        return regions;
     }
-    
-    
+
     /**
-     * 
+     *
      * @param id
      * @return la liste regions en fonction du id
      */
-    
     public Region findById(Long id) {
         return regionRepository.findById(id).orElse(null);
     }
-    
+
     /**
-     * 
+     *
      * @param id
      * @param newLibelleRegion
      * @return le champs libelle region est modifier
@@ -72,10 +66,9 @@ public class RegionService {
         }
         return regionOptional;
     }
-    
+
     /**
-     * @param id 
-     * la supression de la region a travers le id
+     * @param id la supression de la region a travers le id
      */
     public void deleteRegionById(Long id) {
         Optional<Region> region = regionRepository.findById(id);

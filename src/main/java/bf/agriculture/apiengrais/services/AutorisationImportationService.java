@@ -7,6 +7,7 @@ package bf.agriculture.apiengrais.services;
 import bf.agriculture.apiengrais.entites.AutorisationImportation;
 import bf.agriculture.apiengrais.repositories.AutorisationImportationRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,11 @@ public class AutorisationImportationService {
     public List<AutorisationImportation> findAll() {
         return autorisationImportationRepository.findAll();
     }
-    */
-    
-    public List<AutorisationImportation> getSortedAutorisationImportationByNumero() {
+     */
+    public List<AutorisationImportation> getSortedAutorisationImportationsByNumero() {
         List<AutorisationImportation> autorisationImportations = autorisationImportationRepository.findAll();
-        return AutorisationImportation.sortAutorisationImportationsByNumero(autorisationImportations);
+        autorisationImportations.sort(Comparator.comparing(AutorisationImportation::getNumero));
+        return autorisationImportations;
     }
 
     /**
@@ -72,9 +73,8 @@ public class AutorisationImportationService {
     }
 
     /**
-     * 
-     * @param id 
-     * suppression d'une autorisations d'importation
+     *
+     * @param id suppression d'une autorisations d'importation
      */
     public void deleteAutorisationImportationById(Long id) {
         Optional<AutorisationImportation> autorisationImportation = autorisationImportationRepository.findById(id);

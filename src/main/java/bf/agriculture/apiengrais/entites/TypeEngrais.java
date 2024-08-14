@@ -13,8 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +35,7 @@ public class TypeEngrais implements Serializable {
     private String libelle;
 
     @OneToMany(mappedBy = "typeEngrais")
-    @JsonManagedReference
+    //@JsonManagedReference
     @JsonIgnore
     private List<Echantillon> echantillons;
 
@@ -45,9 +43,5 @@ public class TypeEngrais implements Serializable {
     @JsonManagedReference
     @JsonIgnore
     private List<ElementNutritif> ElementNutritif;
-    
-    public static List<TypeEngrais> sortTypeEngraissByLibelle(List<TypeEngrais> typeEngraiss) {
-        Collections.sort(typeEngraiss, Comparator.comparing(TypeEngrais::getLibelle));
-        return typeEngraiss;
-    }
+
 }

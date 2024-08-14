@@ -51,7 +51,7 @@ public class CommuneController {
     }
     
     @PutMapping
-    //pour faire l'operatiob de Mise a jours sur les element de la table region
+    //pour faire l'operatiob de Mise a jours sur les element de la table commune
     public Commune update(@RequestBody Commune commune) {
         return communeService.save(commune);
     }
@@ -90,7 +90,7 @@ public class CommuneController {
     }
     
 /*
-    //Supression simple avec appel de fonction depuis le region service
+    //Supression simple avec appel de fonction depuis le commune service
     @DeleteMapping("/{id}")
     public void deleteCommune(@PathVariable Long id) {
         communeService.deleteCommuneById(id);
