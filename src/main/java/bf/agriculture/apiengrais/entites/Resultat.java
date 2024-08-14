@@ -36,12 +36,12 @@ public class Resultat implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_element_nutritif")
-    @JsonBackReference
+    //@JsonBackReference
     private ElementNutritif elementNutritif;
 
     @ManyToOne
     @JoinColumn(name = "id_echantillon")
-    @JsonBackReference
+    //@JsonBackReference
     private Echantillon echantillon;
 
 }
