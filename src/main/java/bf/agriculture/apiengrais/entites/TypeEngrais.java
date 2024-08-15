@@ -42,6 +42,6 @@ public class TypeEngrais implements Serializable {
     @OneToMany(mappedBy = "typeEngrais")
     @JsonManagedReference
     @JsonIgnore
-    private List<ElementNutritif> ElementNutritif;
+    private List<ElementNutritif> ElementNutritifs;
 
 }

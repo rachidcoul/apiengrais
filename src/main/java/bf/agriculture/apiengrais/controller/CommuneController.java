@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +49,7 @@ public class CommuneController {
         return communeService.findById(id);
     }
     
-    @PutMapping
+    @PostMapping("/{id}")
     //pour faire l'operatiob de Mise a jours sur les element de la table commune
     public Commune update(@RequestBody Commune commune) {
         return communeService.save(commune);

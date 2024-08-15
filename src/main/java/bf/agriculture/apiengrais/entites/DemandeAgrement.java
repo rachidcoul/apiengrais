@@ -66,6 +66,6 @@ public class DemandeAgrement implements Serializable {
     @OneToMany(mappedBy = "demandeAgrement")
     @JsonManagedReference
     @JsonIgnore
-    private List<AutorisationImportation> autorisationImportation;
+    private List<AutorisationImportation> autorisationImportations;
 
 }

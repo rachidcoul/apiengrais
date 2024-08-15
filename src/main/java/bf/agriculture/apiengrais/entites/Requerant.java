@@ -50,6 +50,6 @@ public class Requerant implements Serializable {
     @OneToMany(mappedBy = "requerant")
     @JsonManagedReference
     @JsonIgnore
-    private List<DemandeAgrement> demandeAgrement;
+    private List<DemandeAgrement> demandeAgrements;
 
 }
