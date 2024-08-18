@@ -41,6 +41,8 @@ public class Requerant implements Serializable {
     private String contact;
     private String email;
     private Date dateNaissance;
+    private String numRccm;
+    private String numIfu;
 
     @ManyToOne
     @JoinColumn(name = "id_commune")

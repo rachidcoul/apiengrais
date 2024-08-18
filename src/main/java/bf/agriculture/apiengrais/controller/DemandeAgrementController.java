@@ -83,7 +83,7 @@ public class DemandeAgrementController {
      * @param updates
      * @return modifier le numero rccm
      */
-    
+    /*
     @PatchMapping("/{id}/numRccm")
     public ResponseEntity<Map<String, String>> updateNumRccmDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newNumRccmDemandeAgrement = updates.get("numRccm");
@@ -97,7 +97,7 @@ public class DemandeAgrementController {
             return ResponseEntity.notFound().build();
         }
     }
-    
+    */
 
     /**
      *
@@ -105,6 +105,7 @@ public class DemandeAgrementController {
      * @param updates
      * @return modifier le numIFU
      */
+    /*
     @PatchMapping("/{id}/numIfu")
     public ResponseEntity<Map<String, String>> updateNumIfuDemandeAgrement(@PathVariable Long id, @RequestBody Map<String, String> updates) {
         String newNumIfuDemandeAgrement = updates.get("numIfu");
@@ -118,6 +119,7 @@ public class DemandeAgrementController {
             return ResponseEntity.notFound().build();
         }
     }
+    */
 
     /**
      *

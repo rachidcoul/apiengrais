@@ -57,43 +57,11 @@ public class DemandeAgrementService {
      * @param newNumRccmDemandeAgrement
      * @return modofier le numero RCCM
      */
-    public Optional<DemandeAgrement> updateNumRccmDemandeAgrement(Long id, String newNumRccmDemandeAgrement) {
-        Optional<DemandeAgrement> demandeAgrementOptional = demandeAgrementRepository.findById(id);
-        if (demandeAgrementOptional.isPresent()) {
-            DemandeAgrement demandeAgrement = demandeAgrementOptional.get();
-            demandeAgrement.setNumRccm(newNumRccmDemandeAgrement);
-            demandeAgrementRepository.save(demandeAgrement);
-        }
-        return demandeAgrementOptional;
-    }
-
-    /**
-     *
-     * @param id
-     * @param newActiviteDemandeAgrement
-     * @return modifier activite de demande agrement
-     */
     public Optional<DemandeAgrement> updateActiviteDemandeAgrement(Long id, String newActiviteDemandeAgrement) {
         Optional<DemandeAgrement> demandeAgrementOptional = demandeAgrementRepository.findById(id);
         if (demandeAgrementOptional.isPresent()) {
             DemandeAgrement demandeAgrement = demandeAgrementOptional.get();
             demandeAgrement.setActivite(newActiviteDemandeAgrement);
-            demandeAgrementRepository.save(demandeAgrement);
-        }
-        return demandeAgrementOptional;
-    }
-
-    /**
-     *
-     * @param id
-     * @param newNumIfuDemandeAgrement
-     * @return modifier le numero ifu
-     */
-    public Optional<DemandeAgrement> updateNumIfuDemandeAgrement(Long id, String newNumIfuDemandeAgrement) {
-        Optional<DemandeAgrement> demandeAgrementOptional = demandeAgrementRepository.findById(id);
-        if (demandeAgrementOptional.isPresent()) {
-            DemandeAgrement demandeAgrement = demandeAgrementOptional.get();
-            demandeAgrement.setNumIfu(newNumIfuDemandeAgrement);
             demandeAgrementRepository.save(demandeAgrement);
         }
         return demandeAgrementOptional;

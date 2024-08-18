@@ -38,8 +38,6 @@ public class DemandeAgrement implements Serializable {
     private Long id;
     private String codeAgrement;
     private String activite;
-    private String numRccm;
-    private String numIfu;
     private Date dateDemande;
     private Boolean validationProvince;
     private Date dateValidationProvince;
